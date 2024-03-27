@@ -86,68 +86,68 @@ blueprint:
       selector:
         action:
   
-  trigger:
-    - platform: event
-      event_type: zwave_js_notification
-      event_data:
-        domain: zwave_js
-        endpoint: 0
-        device_id: !input keypad
-        command_class: 111
-        command_class_name: Entry Control
-        event_type: 1
-        event_type_label: Cached keys
-        data_type: 2
-        data_type_label: ASCII
-  
-  action:
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "0" and trigger.event.data.event_type == 0}}
-      then: !input action0
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "1" and trigger.event.data.event_type == 0}}
-      then: !input action1
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "2" and trigger.event.data.event_type == 0}}
-      then: !input action2
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "3" and trigger.event.data.event_type == 0}}
-      then: !input action3
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "4" and trigger.event.data.event_type == 0}}
-      then: !input action4
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "5" and trigger.event.data.event_type == 0}}
-      then: !input action5
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "6" and trigger.event.data.event_type == 0}}
-      then: !input action6
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "7" and trigger.event.data.event_type == 0}}
-      then: !input action7
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "8" and trigger.event.data.event_type == 0}}
-      then: !input action8
-    - if:
-        - condition: template
-          value_template: >-
-            {{trigger.event.data.event_data == "9" and trigger.event.data.event_type == 0}}
-      then: !input action9
+trigger:
+  - platform: event
+    event_type: zwave_js_notification
+    event_data:
+      domain: zwave_js
+      endpoint: 0
+      device_id: !input keypad
+      command_class: 111
+      command_class_name: Entry Control
+      event_type: 1
+      event_type_label: Cached keys
+      data_type: 2
+      data_type_label: ASCII
+
+action:
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "0" and trigger.event.data.event_type == 0}}
+    then: !input action0
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "1" and trigger.event.data.event_type == 0}}
+    then: !input action1
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "2" and trigger.event.data.event_type == 0}}
+    then: !input action2
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "3" and trigger.event.data.event_type == 0}}
+    then: !input action3
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "4" and trigger.event.data.event_type == 0}}
+    then: !input action4
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "5" and trigger.event.data.event_type == 0}}
+    then: !input action5
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "6" and trigger.event.data.event_type == 0}}
+    then: !input action6
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "7" and trigger.event.data.event_type == 0}}
+    then: !input action7
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "8" and trigger.event.data.event_type == 0}}
+    then: !input action8
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "9" and trigger.event.data.event_type == 0}}
+    then: !input action9
