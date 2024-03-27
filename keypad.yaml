@@ -1,0 +1,153 @@
+blueprint:
+  name: Keypad as a controller
+  description: Use keypad presses as a controller
+  domain: automation
+
+input:
+  keypad:
+    name: Entry Control Keypad
+    description: A keypad supporting the Entry Control command class providing a 'Cached keys' event with 1 character 'ASCII' data.
+    selector:
+      device:
+        integration: zwave_js
+  action1:
+    name: Action for '1' Press
+    description: The action that is performed when the '1' key is pressed.
+    selector:
+      action:
+  action2:
+    name: Action for '2' Press
+    description: The action that is performed when the '2' key is pressed.
+    selector:
+      action:
+  action3:
+    name: Action for '3' Press
+    description: The action that is performed when the '3' key is pressed.
+    selector:
+      action:
+  action4:
+    name: Action for '4' Press
+    description: The action that is performed when the '4' key is pressed.
+    selector:
+      action:
+  action5:
+    name: Action for '5' Press
+    description: The action that is performed when the '5' key is pressed.
+    selector:
+      action:
+  action6:
+    name: Action for '6' Press
+    description: The action that is performed when the '6' key is pressed.
+    selector:
+      action:
+  action7:
+    name: Action for '7' Press
+    description: The action that is performed when the '7' key is pressed.
+    selector:
+      action:
+  action8:
+    name: Action for '8' Press
+    description: The action that is performed when the '8' key is pressed.
+    selector:
+      action:
+  action9:
+    name: Action for '9' Press
+    description: The action that is performed when the '9' key is pressed.
+    selector:
+      action:
+  action0:
+    name: Action for '0' Press
+    description: The action that is performed when the '0' key is pressed.
+    selector:
+      action:
+  actionAway:
+    name: Action for 'Away' Press
+    description: The action that is performed when the 'Away' arming key is pressed.
+    selector:
+      action:
+  action0:
+    name: Action for 'Stay' Press
+    description: The action that is performed when the 'Stay' arming key is pressed.
+    selector:
+      action:
+  actionPolice:
+    name: Action for 'Police' Press
+    description: The action that is performed when the 'Police' emergency key is pressed.
+    selector:
+      action:
+  actionMedical:
+    name: Action for 'Medical' Press
+    description: The action that is performed when the 'Medical' emergency key is pressed.
+    selector:
+      action:
+  actionFire:
+    name: Action for 'Fire' Press
+    description: The action that is performed when the 'Fire' emergency key is pressed.
+    selector:
+      action:
+
+trigger:
+  - platform: event
+    event_type: zwave_js_notification
+    event_data:
+      domain: zwave_js
+      endpoint: 0
+      device_id: !input keypad
+      command_class: 111
+      command_class_name: Entry Control
+      event_type: 1
+      event_type_label: Cached keys
+      data_type: 2
+      data_type_label: ASCII
+
+action:
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "0" and trigger.event.data.event_type == 0}}
+    then: !input action0
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "1" and trigger.event.data.event_type == 0}}
+    then: !input action1
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "2" and trigger.event.data.event_type == 0}}
+    then: !input action2
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "3" and trigger.event.data.event_type == 0}}
+    then: !input action3
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "4" and trigger.event.data.event_type == 0}}
+    then: !input action4
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "5" and trigger.event.data.event_type == 0}}
+    then: !input action5
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "6" and trigger.event.data.event_type == 0}}
+    then: !input action6
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "7" and trigger.event.data.event_type == 0}}
+    then: !input action7
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "8" and trigger.event.data.event_type == 0}}
+    then: !input action8
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_data == "9" and trigger.event.data.event_type == 0}}
+    then: !input action9
