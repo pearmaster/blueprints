@@ -151,3 +151,28 @@ action:
         value_template: >-
           {{trigger.event.data.event_data == "9" and trigger.event.data.event_type == 0}}
     then: !input action9
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_type == 6}}
+    then: !input actionStay
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_type == 5}}
+    then: !input actionAway
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_type == 17}}
+    then: !input actionPolice
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_type == 19}}
+    then: !input actionMedical
+  - if:
+      - condition: template
+        value_template: >-
+          {{trigger.event.data.event_type == 16}}
+    then: !input actionFire
