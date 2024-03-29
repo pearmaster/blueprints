@@ -65,7 +65,7 @@ blueprint:
       description: The action that is performed when the 'Away' arming key is pressed.
       selector:
         action:
-    action0:
+    actionStay:
       name: Action for 'Stay' Press
       description: The action that is performed when the 'Stay' arming key is pressed.
       selector:
