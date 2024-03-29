@@ -1,0 +1,63 @@
+blueprint:
+  name: Device triggered state saver
+  description: |
+    Saves or restores the state of a device based on another device trigger.
+    This is good to let a motion sensor control turning off a fan when you leave a room and turning it back on again when you come back, unless it was off to begin with then you'd want to keep it off.
+  domain: automation
+
+  input:
+    trigger:
+      name: Trigger device
+      description: This device triggers the saving or restoring of state
+      selector:
+        entity:
+    save_trigger_state:
+      name: State that saves
+      description: When the trigger device has this state, save.
+      selector:
+        entity_id: !input trigger
+    restore_trigger_state:
+      name: State that restores
+      description: When the trigger device has this state, restore.
+      selector:
+        entity_id: !input trigger
+    scene:
+      name: Scene for saving
+      description: The state will be saved into this scene
+      selector:
+        entity:
+          domain: scene
+    controlled:
+      name: Controlled devices
+      description: These devices are saved and restored
+     selector:
+       target:
+         entity:
+
+
+trigger:
+  - platform: state
+    id: save_triggered
+    entity_id: !input trigger
+    to: !input save_trigger_state
+  - platform: state
+    id: restore_triggered
+    entity_id: !input trigger
+    to: !input restore_trigger_state
+
+action:
+  - if:
+      - condition: trigger
+        id: ["save_triggered"]
+    then:
+      - service: scene.create
+        data:
+          scene_id: !input scene
+          snapshot_entities: !input controlled
+  - if:
+      - condition: trigger
+        id: ["restore_triggered"]
+    then:
+      - service: scene.turn_on
+        target:
+          entity_id: !input scene
