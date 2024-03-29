@@ -2,7 +2,6 @@ blueprint:
   name: Device triggered state saver
   description: |
     Saves or restores the state of a device based on another device trigger.
-    This is good to let a motion sensor control turning off a fan when you leave a room and turning it back on again when you come back, unless it was off to begin with then you'd want to keep it off.
   domain: automation
 
   input:
