@@ -1,9 +1,7 @@
 blueprint:
   name: Device triggered state saver
-  description: |
-    Saves or restores the state of a device based on another device trigger.
+  description: Saves or restores the state of a device based on another device trigger.
   domain: automation
-
   input:
     trigger:
       name: Trigger device
@@ -29,9 +27,9 @@ blueprint:
     controlled:
       name: Controlled devices
       description: These devices are saved and restored
-     selector:
-       target:
-         entity:
+      selector:
+        target:
+          entity:
 
 
 trigger:
