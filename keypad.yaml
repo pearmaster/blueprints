@@ -99,6 +99,15 @@ trigger:
       event_type_label: Cached keys
       data_type: 2
       data_type_label: ASCII
+  - platform: event
+    event_type: zwave_js_notification
+    event_data:
+      domain: zwave_js
+      endpoint: 0
+      device_id: !input keypad
+      command_class: 111
+      command_class_name: Entry Control
+      data_type: 0
 
 action:
   - if:
