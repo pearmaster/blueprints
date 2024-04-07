@@ -113,6 +113,11 @@ action:
   - if:
       - condition: template
         value_template: >-
+          {{trigger.platform is none}}
+    then:
+  - if:
+      - condition: template
+        value_template: >-
           {{trigger.event.data.event_data == "0" and trigger.event.data.event_type == 1}}
     then: !input action0
   - if:
