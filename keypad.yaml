@@ -14,13 +14,16 @@ blueprint:
       name: Action for '1' Press
       description: The action that is performed when the '1' key is pressed.
       default:
-        delay:
-          milliseconds: 200
+        - delay:
+            milliseconds: 200
       selector:
         action:
     action2:
       name: Action for '2' Press
       description: The action that is performed when the '2' key is pressed.
+      default:
+        - delay:
+            milliseconds: 200
       selector:
         action:
     action3:
