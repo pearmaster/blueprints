@@ -13,6 +13,9 @@ blueprint:
     action1:
       name: Action for '1' Press
       description: The action that is performed when the '1' key is pressed.
+      default:
+        delay:
+          milliseconds: 200
       selector:
         action:
     action2:
@@ -85,6 +88,8 @@ blueprint:
       description: The action that is performed when the 'Fire' emergency key is pressed.
       selector:
         action:
+
+mode: single
   
 trigger:
   - platform: event
@@ -190,3 +195,6 @@ action:
         value_template: >-
           {{trigger.event.data.event_type == 16}}
     then: !input actionFire
+  - delay:
+      seconds: 1
+      milliseconds: 200
