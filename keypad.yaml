@@ -1,6 +1,6 @@
 blueprint:
   name: Keypad as a controller
-  description: Use keypad presses as a controller
+  description: Use keypad presses as a controller.  Before using, manually trigger the automation to setup the keypad.
   domain: automation
 
   input:
@@ -14,81 +14,108 @@ blueprint:
       name: Action for '1' Press
       description: The action that is performed when the '1' key is pressed.
       default:
-        - delay:
-            milliseconds: 200
+        - service: light.toggle
       selector:
         action:
     action2:
       name: Action for '2' Press
       description: The action that is performed when the '2' key is pressed.
       default:
-        - delay:
-            milliseconds: 200
+        - service: light.toggle
       selector:
         action:
     action3:
       name: Action for '3' Press
       description: The action that is performed when the '3' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     action4:
       name: Action for '4' Press
       description: The action that is performed when the '4' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     action5:
       name: Action for '5' Press
       description: The action that is performed when the '5' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     action6:
       name: Action for '6' Press
       description: The action that is performed when the '6' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     action7:
       name: Action for '7' Press
       description: The action that is performed when the '7' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     action8:
       name: Action for '8' Press
       description: The action that is performed when the '8' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     action9:
       name: Action for '9' Press
       description: The action that is performed when the '9' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     action0:
       name: Action for '0' Press
       description: The action that is performed when the '0' key is pressed.
+      default:
+        - service: light.toggle
       selector:
         action:
     actionAway:
       name: Action for 'Away' Press
       description: The action that is performed when the 'Away' arming key is pressed.
+      default:
+        - service: light.turn_off
       selector:
         action:
     actionStay:
       name: Action for 'Stay' Press
       description: The action that is performed when the 'Stay' arming key is pressed.
+      default:
+        - service: light.turn_on
       selector:
         action:
     actionPolice:
       name: Action for 'Police' Press
       description: The action that is performed when the 'Police' emergency key is pressed.
+      default:
+        - delay:
+            milliseconds: 2
       selector:
         action:
     actionMedical:
       name: Action for 'Medical' Press
       description: The action that is performed when the 'Medical' emergency key is pressed.
+      default:
+        - delay:
+            milliseconds: 2
       selector:
         action:
     actionFire:
       name: Action for 'Fire' Press
       description: The action that is performed when the 'Fire' emergency key is pressed.
+      default:
+        - delay:
+            milliseconds: 2
       selector:
         action:
 
@@ -123,6 +150,11 @@ action:
         value_template: >-
           {{trigger.platform is none}}
     then:
+      - service: zwave_js.set_value
+        device_id: !input keypad
+        command_class: 111
+        property: 1
+        value: 1
   - if:
       - condition: template
         value_template: >-
